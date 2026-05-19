@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb # H2 메모리 DB주소 (로컬 전용)
+    driver-class-name: org.h2.Driver # H2 드라이버 사용
+  jpa:
+    hibernate:
+      ddl-auto: create # 실행할 때마다 테이블 생성
+    show-sql: true  # SQL쿼리 콘솔에 출력
+  h2:
+    console:
+      enabled: true # H2 웹 콘솔 접속 허용

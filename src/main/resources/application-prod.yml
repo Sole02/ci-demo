@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: ${DB_URL}  # DB주소
+    username: ${DB_USERNAME}  # DB아이디
+    password: ${DB_PASSWORD}  # DB비밀번호
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 사용
+  jpa:
+    hibernate:
+      ddl-auto: update  # 기존 테이블 유지, 변경사항 업데이트
+    show-sql: false # SQL 출력 안 함
