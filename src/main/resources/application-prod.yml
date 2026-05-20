@@ -1,10 +1,26 @@
 spring:
+  config:
+    import: "aws-parameterstore:/my-app/"  # Parameter Store 값
   datasource:
-    url: ${DB_URL}  # DB주소
-    username: ${DB_USERNAME}  # DB아이디
-    password: ${DB_PASSWORD}  # DB비밀번호
-    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 사용
+    url: ${DB_URL}  # Parameter Store의 /my-app/DB_URL 값
+    username: ${DB_USERNAME}  # Parameter Store의 /my-app/DB_USERNAME 값
+    password: ${DB_PASSWORD}  # Parameter Store의 /my-app/DB_PASSWORD 값
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL 드라이버
   jpa:
     hibernate:
-      ddl-auto: update  # 기존 테이블 유지, 변경사항 업데이트
-    show-sql: false # SQL 출력 안 함
+      ddl-auto: update  # 기존 테이블 유지
+    show-sql: false  # 운영환경에서 SQL 출력 안 함
+
+info:
+  app:
+    team-name: ${TEAM_NAME}  # Parameter Store의 /my-app/TEAM_NAME 값
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info  # health, info 엔드포인트
+
+  info:
+    env:
+      enabled: true  # info 엔드포인트에 환경변수 표시 활성화
